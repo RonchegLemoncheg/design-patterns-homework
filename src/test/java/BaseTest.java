@@ -1,12 +1,14 @@
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import ge.tbc.testautomation.data.Constants;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
+import util.ModdedAllureSelenide;
 
 public class BaseTest {
 
@@ -33,7 +35,7 @@ public class BaseTest {
                 throw new IllegalArgumentException();
         }
         Configuration.timeout = 6000;
-
+        SelenideLogger.addListener("AllureSelenide", new ModdedAllureSelenide());
         WebDriverRunner.getWebDriver().manage().window().maximize();
     }
 

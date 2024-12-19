@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Failed",
+    "messageRegex": ".*failed.*",
+    "matchedStatuses": ["failed"]
+  },
+  {
+    "name": "Code Problems",
+    "messageRegex": ".*RuntimeException.*",
+    "matchedStatuses": ["broken"]
+  },
+  {
+    "name": "UI Interaction Failures",
+    "matchedStatuses": ["failed", "broken"],
+    "traceRegex": ".*UI.*|.*button.*|.*dropdown.*"
+  },
+  {
+    "name": "Successful Tests",
+    "matchedStatuses": ["passed"]
+  }
+]
