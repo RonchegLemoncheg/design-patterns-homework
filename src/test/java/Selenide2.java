@@ -3,10 +3,16 @@ import ge.tbc.testautomation.pages.*;
 import ge.tbc.testautomation.retry.RetryAnalyzer;
 import ge.tbc.testautomation.retry.RetryCount;
 import ge.tbc.testautomation.steps.*;
+import io.qameta.allure.*;
+import org.junit.jupiter.api.DisplayName;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import util.Util;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
+import java.io.ByteArrayInputStream;
 
 import static com.codeborne.selenide.Selenide.open;
 @Test(groups = "Selenide 2")
@@ -38,7 +44,14 @@ public class Selenide2 extends BaseTest{
     }
 
 
+    //magalitistvis yvela tests displayname-c davuwere da description
+
     @Test
+    @Feature("UI Elements and Interactions")
+    @Story("Telerik Web Section Design")
+    @DisplayName("Validate Telerik Web Section Design and Interactions")
+    @Description("This test validates hover interactions and section behaviors in Telerik web sections.")
+    @Severity(SeverityLevel.CRITICAL)
     public void validateDemosDesign(){
         open(Constants.TELERIK_LINK);
         telerikSteps.
@@ -54,6 +67,11 @@ public class Selenide2 extends BaseTest{
 
 
     @Test
+    @Feature("Store and Pricing")
+    @Story("Order Mechanics and Pricing Validation")
+    @DisplayName("Validate Telerik Order Mechanics and Pricing")
+    @Description("This test verifies that the order mechanics and pricing for Telerik products are correct on the store page.")
+    @Severity(SeverityLevel.CRITICAL)
     public void validateOrderMechanics(){
         open(Constants.TELERIK_LINK);
         telerikSteps.click(telerikPage.pricingLink);
@@ -96,6 +114,11 @@ public class Selenide2 extends BaseTest{
     }
 
     @Test
+    @Feature("Book Search and Validation")
+    @Story("DemoQA Books Search")
+    @DisplayName("Validate Book Search and Image Display on DemoQA Platform")
+    @Description("This test checks the functionality of the DemoQA books search by publisher and title and ensures that images are displayed for the books.")
+    @Severity(SeverityLevel.NORMAL)
     public void chainedLocatorsTest(){
         open(Constants.DEMOQA_BOOKS_LINK);
         demoqaBooksSteps.
@@ -106,6 +129,11 @@ public class Selenide2 extends BaseTest{
 
     @Test(retryAnalyzer = RetryAnalyzer.class)
     @RetryCount(count = 2)
+    @Feature("Book Search and Validation")
+    @Story("Soft Assert for Book Search")
+    @DisplayName("Validate Book Search with Soft Assert")
+    @Description("This test uses a soft assert to validate the books search by publisher and title on DemoQA platform.")
+    @Severity(SeverityLevel.MINOR)
     public void softAssertTest(){
         open(Constants.DEMOQA_BOOKS_LINK);
         SoftAssert softAssert = new SoftAssert();

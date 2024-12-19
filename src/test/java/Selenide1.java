@@ -1,12 +1,15 @@
 import ge.tbc.testautomation.pages.*;
 import ge.tbc.testautomation.steps.*;
+import io.qameta.allure.*;
+import org.junit.jupiter.api.DisplayName;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.open;
 import static ge.tbc.testautomation.data.Constants.*;
+
 @Test(groups = "Selenide 1")
-public class Selenide1 extends BaseTest{
+public class Selenide1 extends BaseTest {
     TelerikPage telerikPage;
     TelerikSteps telerikSteps;
     PricingPage pricingPage;
@@ -19,7 +22,7 @@ public class Selenide1 extends BaseTest{
     DemoqaSteps demoqaSteps;
 
     @BeforeClass
-    public void setUp(){
+    public void setUp() {
         telerikPage = new TelerikPage();
         telerikSteps = new TelerikSteps();
         pricingPage = new PricingPage();
@@ -32,8 +35,14 @@ public class Selenide1 extends BaseTest{
         demoqaSteps = new DemoqaSteps();
     }
 
+//magalitistvis yvela tests displayname-c davuwere da description
 
     @Test
+    @Feature("Pricing Bundles")
+    @Story("Validate bundle offers in Telerik")
+    @Severity(SeverityLevel.CRITICAL)
+    @DisplayName("Validate Bundle Offers for Telerik Pricing")
+    @Description("This test validates that the Telerik pricing page correctly shows bundle offers with the correct support and availability status.")
     public void validateBundleOffers() {
         open(TELERIK_LINK);
         telerikSteps.click(telerikPage.pricingLink);
@@ -66,21 +75,31 @@ public class Selenide1 extends BaseTest{
 
 
     @Test
-    public void validateIndividualOffers(){
+    @Feature("Pricing Bundles")
+    @Story("Individual Product Offer Validation")
+    @DisplayName("Validate Individual Offers for Telerik Pricing")
+    @Description("This test checks the availability and support options for individual Telerik products such as Kendo UI and Kendo React.")
+    @Severity(SeverityLevel.NORMAL)
+    public void validateIndividualOffers() {
         open(TELERIK_LINK);
         telerikSteps.click(telerikPage.pricingLink).click(pricingPage.individualProductsLabel);
         pricingSteps.
-                showsImageAfterHovering(pricingPage.individualKendoUI,pricingPage.kendoUINinja)
-                .showsImageAfterHovering(pricingPage.individualKendoReact,pricingPage.kendoReactNinja)
-                .checkDefaultSupport(pricingPage.individualKendoUIDefaultOption,PRIORITY_SUPPORT)
-                .checkDefaultSupport(pricingPage.individualKendoUIDefaultOption,PRIORITY_SUPPORT)
-                .checkDefaultSupportPrice(pricingPage.individualKendoUIDefaultPrice,KENDO_UI_PRIORITY_PRICE)
-                .checkDefaultSupportPrice(pricingPage.individualKendoReactDefaultPrice,KENDOREACT_PRIORITY_PRICE);
+                showsImageAfterHovering(pricingPage.individualKendoUI, pricingPage.kendoUINinja)
+                .showsImageAfterHovering(pricingPage.individualKendoReact, pricingPage.kendoReactNinja)
+                .checkDefaultSupport(pricingPage.individualKendoUIDefaultOption, PRIORITY_SUPPORT)
+                .checkDefaultSupport(pricingPage.individualKendoUIDefaultOption, PRIORITY_SUPPORT)
+                .checkDefaultSupportPrice(pricingPage.individualKendoUIDefaultPrice, KENDO_UI_PRIORITY_PRICE)
+                .checkDefaultSupportPrice(pricingPage.individualKendoReactDefaultPrice, KENDOREACT_PRIORITY_PRICE);
 
     }
 
     @Test(groups = "CheckBoxes-FrontEnd", priority = 2)
-    public void checkBoxTest(){
+    @Feature("UI Components")
+    @Story("Checkbox Functionality")
+    @DisplayName("Test Checkbox Functionality on Heroku Platform")
+    @Description("This test verifies that the checkbox functionality works as expected on the Heroku platform.")
+    @Severity(SeverityLevel.MINOR)
+    public void checkBoxTest() {
         open(HEROKU_CHECKBOX);
         herokuCheckboxSteps.
                 setFirstCheckboxSelected(herokuCheckboxPage.checkBoxes)
@@ -88,7 +107,12 @@ public class Selenide1 extends BaseTest{
     }
 
     @Test(groups = "dropDown-FrontEnd", priority = 1)
-    public void dropDownTest(){
+    @Feature("UI Components")
+    @Story("Dropdown Selection Functionality")
+    @DisplayName("Test Dropdown Selection on Heroku Platform")
+    @Description("This test ensures that the dropdown menu on the Heroku platform allows selecting an option correctly.")
+    @Severity(SeverityLevel.MINOR)
+    public void dropDownTest() {
         open(HEROKU_DROPDOWN);
         herokuDropdownSteps.
                 validateSelected(herokuDropdownPage.dropdownMenu, PLEASE_SELECT_AN_OPTION)
@@ -97,12 +121,18 @@ public class Selenide1 extends BaseTest{
     }
 
     @Test
-    public void collectionsTest(){
+    @Epic("Form Automation")
+    @Feature("Form Submission")
+    @Story("DemoQA Form Test")
+    @DisplayName("Test Form Submission and Validation on DemoQA Platform")
+    @Description("This test verifies that the form fields on the DemoQA platform are correctly filled and submitted.")
+    @Severity(SeverityLevel.NORMAL)
+    public void collectionsTest() {
         // testngshi miweria rom mxolod firefoxshi gaeshvas
         open(DEMOQA_FORM_LINK);
         demoqaSteps.
                 fillField(demoqaPage.userName, USERNAME)
-                .fillField(demoqaPage.userEmail,USEREMAIL)
+                .fillField(demoqaPage.userEmail, USEREMAIL)
                 .fillField(demoqaPage.currentAddress, CURRENT_ADDRESS)
                 .fillField(demoqaPage.permanentAddress, PERMANENT_ADDRESS)
                 .submitForm(demoqaPage.submitButton)

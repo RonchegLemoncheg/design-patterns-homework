@@ -18,3 +18,7 @@ buildNumber.properties
 
 .idea
 build
+
+allure-results/*
+!allure-results/categories.json
+!allure-results/environment.properties
